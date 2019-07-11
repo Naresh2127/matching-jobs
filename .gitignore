@@ -90,6 +90,5 @@ build/
 .idea/misc.xml
 .idea/modules.xml
 .idea/vcs.xml
-*.xml
 .idea/compiler.xml
 .idea/encodings.xml
