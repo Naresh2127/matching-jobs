@@ -94,7 +94,7 @@ Matching Criteria order:
 
   + http://localhost:8080/MatchJobs/0
   
-+ Response 200 (application/json)
++ Response 404 (application/json)
 
   + 
         {
@@ -121,15 +121,12 @@ Matching Criteria order:
 
   + http://localhost:8080/MatchJobs/1000
   
-+ Response 500 (application/json)
++ Response 404 (application/json)
 
   +
   
       {
-      "Status": "fail",
-      "Message": "An error occurred while processing the request",
-      "Data": [
-          "Worker not found"
-      ]
+      "Status": "success",
+      "Message": "Worker not found"
   }
     

@@ -59,9 +59,9 @@ public class MatchingJobsApplicationTests {
 		mockMvc.perform(MockMvcRequestBuilders
 				.get("/MatchJobs/100")
 				.contentType(APPLICATION_JSON))
-				.andExpect(status().is5xxServerError())
-				.andExpect(jsonPath("Status", is("fail")))
-				.andExpect(jsonPath("$.Data[0]", is("Worker not found")));
+				.andExpect(status().is4xxClientError())
+				.andExpect(jsonPath("Status", is("success")))
+				.andExpect(jsonPath("Message", is("Worker not found")));
 	}
 
 	@Test
@@ -87,7 +87,7 @@ public class MatchingJobsApplicationTests {
 		mockMvc.perform(MockMvcRequestBuilders
 				.get("/MatchJobs/0")
 				.contentType(APPLICATION_JSON))
-				.andExpect(status().isOk())
+				.andExpect(status().is4xxClientError())
 				.andExpect(jsonPath("Status", is("success")))
 				.andExpect(jsonPath("Message", is("No matching jobs found")));
 	}
