@@ -46,14 +46,14 @@ public class MatchingJobsHandler {
                 } else
                     return new ResponseEntity<>(new WorkerMatchingJobs("success", "User is inactive"), HttpStatus.OK);
                 if(filteredJobList == null || filteredJobList.size() == 0)
-                    return new ResponseEntity<>(new WorkerMatchingJobs("success", "No matching jobs found"), HttpStatus.OK);
+                    return new ResponseEntity<>(new WorkerMatchingJobs("success", "No matching jobs found"), HttpStatus.NOT_FOUND);
 
                 WorkerMatchingJobs workerMatchingJobs = new WorkerMatchingJobs();
                 workerMatchingJobs.setStatus("success");
                 workerMatchingJobs.setData(filteredJobList);
                 return new ResponseEntity<>(workerMatchingJobs, HttpStatus.OK);
             } else {
-                throw new MatchJobsException("Worker not found");
+                return new ResponseEntity<>(new WorkerMatchingJobs("success", "Worker not found"), HttpStatus.NOT_FOUND);
             }
 
         } catch (Exception e) {
@@ -71,7 +71,7 @@ public class MatchingJobsHandler {
 
     //This function calculates the distance between two given latitudes and longitudes
     private int calculateDistanceInKilometer(double workerLat, double wokerLng,
-                                            double jobLat, double jobLng) {
+                                             double jobLat, double jobLng) {
 
         final double AVERAGE_RADIUS_OF_EARTH_KM = 6371;
         double latDistance = Math.toRadians(workerLat - jobLat);
